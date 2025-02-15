@@ -28,18 +28,13 @@ def summarize_text(text, max_length=150):
 # Home route (landing page)
 @app.route('/')
 def home():
-    return """
-    <h1>Medical Report Summarizer</h1>
-    <p>Upload a medical report PDF to get a summarized version.</p>
-    <form action="/summarize_pdf" method="post" enctype="multipart/form-data">
-        <input type="file" name="pdf_file">
-        <button type="submit">Summarize PDF</button>
-    </form>
-    """
+    return "healthy"
+
 
 # API Endpoint to summarize text from a PDF
-@app.route('/summarize_pdf', methods=['POST'])
+@app.route('/summarize', methods=['POST'])
 def summarize_pdf():
+
     if 'pdf_file' not in request.files:
         return jsonify({"error": "No PDF file uploaded."}), 400
 
@@ -52,12 +47,13 @@ def summarize_pdf():
     if extracted_text.startswith("Error") or extracted_text == "No readable text found in the PDF.":
         return jsonify({"error": extracted_text}), 400
 
-    summary = summarize_text(extracted_text)
+    existing_summary = request.form.get("existing_summary")
+    if existing_summary is None:
+        existing_summary = ""
 
-    return jsonify({
-         # Show first 1000 characters
-        "summary": summary
-    })
+    summary = summarize_text(existing_summary+extracted_text)
+
+    return jsonify({"summary": summary})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8888, debug=True)
+    app.run(host="0.0.0.0", port=8080, debug=True)
