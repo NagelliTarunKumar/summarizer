@@ -1,7 +1,7 @@
 import requests
 
 # Define the API endpoint
-url = "http://127.0.0.1:8080/summarize_pdf"
+url = "http://localhost:8080/summarize_pdf"
 
 # Specify the PDF file to upload (replace with your actual file path)
 pdf_file_path = "/Users/tarunkumarnagelli/Downloads/Tarun_Resume_Sep_6.pdf"  # Ensure this file exists in the same directory
