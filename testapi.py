@@ -1,7 +1,7 @@
 import requests
 
 # URL of your FastAPI app (replace with your actual URL if different)
-url = "http://127.0.0.1:8000/predict"
+url = "http://localhost:8000/predict"
 
 # Example query to test
 query = "The patient is experiencing unexplained weight loss, increased thirst, and frequent urination. His blood pressure is 130/85 mmHg."

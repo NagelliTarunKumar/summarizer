@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from langchain.llms import Ollama
+from langchain_ollama import OllamaLLM
 
 # Initialize the model using LangChain and Ollama
-llm = Ollama(model="biomistral1")  # Use the correct model name you pulled locally
+llm = OllamaLLM(model="biomistral1")  # Use the correct model name you pulled locally
 
 app = FastAPI()
 
